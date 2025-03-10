@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #ffe6f2; /* Light pink background as fallback */
+    background-image: url('https://img.freepik.com/free-vector/gradient-pink-color-background-abstract-modern-design-background-website-business-presentation_120819-101.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container {
+    width: 90%;
+    max-width: 800px;
+    height: 80vh;
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3); /* Pink shadow */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(5px); /* Adds a blur effect to the background behind the container */
+}
+
+.chat-header {
+    background-color: rgba(255, 105, 180, 0.8); /* Semi-transparent hot pink header */
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chat-header h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.chat-header h1 i {
+    margin-right: 8px;
+    font-size: 1.2em;
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: rgba(255, 240, 245, 0.7); /* Semi-transparent very light pink */
+}
+
+.message {
+    display: flex;
+    max-width: 80%;
+}
+
+.user-message {
+    align-self: flex-end;
+}
+
+.bot-message {
+    align-self: flex-start;
+}
+
+.message-content {
+    padding: 12px 16px;
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-message .message-content {
+    background-color: rgba(255, 105, 180, 0.8); /* Semi-transparent hot pink for user messages */
+    color: white;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bot-message .message-content {
+    background-color: rgba(255, 182, 193, 0.8); /* Semi-transparent light pink for bot messages */
+    color: #4a4a4a;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input-container {
+    display: flex;
+    padding: 15px;
+    background-color: rgba(255, 240, 245, 0.8); /* Semi-transparent very light pink */
+    border-top: 1px solid rgba(255, 182, 193, 0.5); /* Semi-transparent light pink border */
+}
+
+#user-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 24px;
+    outline: none;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    box-shadow: 0 1px 2px rgba(255, 105, 180, 0.2); /* Pink shadow */
+}
+
+#send-button {
+    background-color: rgba(255, 105, 180, 0.9); /* Semi-transparent hot pink button */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#send-button:hover {
+    background-color: #ff1493; /* Deeper pink on hover */
+}
+
+.typing-indicator {
+    display: flex;
+    padding: 12px 16px;
+    background-color: rgba(255, 182, 193, 0.7); /* Semi-transparent light pink for typing indicator */
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    margin-top: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background-color: #ff69b4; /* Hot pink dots */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    animation: typing 1s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+    margin-right: 0;
+}
+
+@keyframes typing {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%;
+        height: 90vh;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+}
+
+/* Search results styling */
+.search-results {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    border-left: 3px solid rgba(255, 105, 180, 0.8); /* Semi-transparent hot pink */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-results p {
+    margin-bottom: 5px;
+    color: #ff69b4;
+}
+
+.search-results ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.search-results li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #4a4a4a;
+}
+
+/* Searching indicator */
+.searching-indicator {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: rgba(255, 240, 245, 0.8); /* Semi-transparent very light pink */
+    border-radius: 18px;
+    align-self: center;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    color: rgba(255, 105, 180, 0.9); /* Semi-transparent hot pink */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.searching-indicator i {
+    margin-right: 8px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+/* Wikipedia information styling */
+.wiki-info {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    border-left: 3px solid rgba(0, 123, 255, 0.8); /* Blue border for Wikipedia */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wiki-info p:first-child {
+    margin-bottom: 5px;
+    color: #0077cc; /* Wikipedia blue */
+    font-weight: bold;
+}
+
+.wiki-info p:last-child {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #333;
+}
+
+/* Search links styling */
+.search-links {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    border-left: 3px solid rgba(255, 105, 180, 0.8); /* Pink border for search links */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-links p {
+    margin-bottom: 5px;
+    color: #ff69b4; /* Pink */
+    font-weight: bold;
+}
+
+.search-links ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.search-links li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.search-links a {
+    color: #0077cc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.search-links a:hover {
+    color: #ff69b4;
+    text-decoration: underline;
+}
+
+/* Current time styling */
+.current-time {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+}
+
+/* Knowledge Graph styling */
+.knowledge-graph {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    border-left: 3px solid rgba(76, 175, 80, 0.8); /* Green border for knowledge graph */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.knowledge-graph p:first-child {
+    margin-bottom: 5px;
+    color: #4CAF50; /* Green */
+    font-weight: bold;
+}
+
+.knowledge-content p {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #333;
+}
+
+/* News results styling */
+.news-results {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    border-left: 3px solid rgba(255, 152, 0, 0.8); /* Orange border for news */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-results p:first-child {
+    margin-bottom: 5px;
+    color: #FF9800; /* Orange */
+    font-weight: bold;
+}
+
+.news-results ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.news-results li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #333;
+} 
